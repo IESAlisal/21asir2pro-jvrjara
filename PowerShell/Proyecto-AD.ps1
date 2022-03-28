@@ -25,6 +25,7 @@ for ($i=0;$i -le $empresa.Length -1;$i++){
 
     for($n=1;$n -le 10;$n++){
         $CrearUser = $empre=("{O:D2}" -f $n)
+        #El usuario al ingresar debe cambiar la contraseña 
         New-ADUser -Name $CrearUser -AccountPassword(ConvertTo-SecureString -AsPlainText $contraseña -Force) -Enabled $true -ChangePasswordAtLogon 1 -Path "OU=$empre,OU=Usuario.$ruta"
         Add-ADGroupMember -Identity $empre -Members $CrearUser
     }
