@@ -8,8 +8,8 @@ $ruta = (Get-ADDomain).DistinguishedName
 #Mostamos la variable $ruta
 echo $ruta
 #Unidades Organizativas para la creacion de empresa, usuario y maquinas
-$Usuarios = New-ADOrganizarionalUnit -Name usuarios -Path $ruta
-$Maquinas = New-ADOrganizarionalUnit -Name maquinas -Path $ruta
+$Usuarios = New-ADOrganizationalUnit -Name usuarios -Path $ruta
+$Maquinas = New-ADOrganizationalUnit -Name maquinas -Path $ruta
 
 #Todos los usuario y maquinas para la empresa
 #Los nombres pueden cambiar
@@ -22,7 +22,7 @@ $empresa = @('Planta0','Planta1','Planta2','Planta3')
 for ($i=0;$i -le $empresa.Length -1;$i++){
 
     $empre = $empresa[$i]
-    New-ADOrganizarionalUnit -Name $empre -Path "OU=Usuarios.$ruta"
+    New-ADOrganizationalUnit -Name $empre -Path "OU=Usuarios.$ruta"
     New-ADGroup -GroupCategory Security -GroupScope Global -Name $empre -Path "OU=$empre,OU=Usuarios.$ruta"
 
     for($n=1;$n -le 10;$n++){
@@ -39,7 +39,7 @@ $Maquina = @('A01','A02','A03','A04','A05','A06')
 
 for($i=0;$i -le $Maquina.Length -1;$i++){
     $NEW = $Maquina[$i]
-    $OUMaquinas = New-ADOrganizarionalUnit -Name $NEW -Path "OU=Maquinas.Ruta"
+    $OUMaquinas = New-ADOrganizationalUnit -Name $NEW -Path "OU=Maquinas.Ruta"
 
     for(for($x=1;$x -le 10;$x++){
         $CrearO = $NEW=("{O:D2}" -f $n)
