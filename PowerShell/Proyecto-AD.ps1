@@ -43,7 +43,7 @@ for($i=0;$i -le $Maquina.Length -1;$i++){
     $NEW = $Maquina[$i]
     $OUMaquinas = New-ADOrganizationalUnit -Name $NEW -Path "OU=Maquinas.Ruta"
 
-    for(for($x=1;$x -le 10;$x++){
+    for(for($n=1;$n -le 10;$n++){
         $CrearO = $NEW=("{O:D2}" -f $n)
         New-ADComputer -Name $CrearO -Path "OU=$NEW,OU=maquinas.$ruta"
         
