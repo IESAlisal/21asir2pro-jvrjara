@@ -7,6 +7,8 @@
 $ruta = (Get-ADDomain).DistinguishedName
 #Mostamos la variable $ruta
 echo $ruta
+#Se debe realizar un Update porque por defecto un servidor no tiene instalado los cmdlet de AD
+Update-Help
 #Unidades Organizativas para la creacion de empresa, usuario y maquinas
 $Usuarios = New-ADOrganizationalUnit -Name usuarios -Path $ruta
 $Maquinas = New-ADOrganizationalUnit -Name maquinas -Path $ruta
