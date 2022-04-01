@@ -4,7 +4,9 @@
 #######                       28/03/2022                      #######
 #####################################################################
 
-$ruta = (Get-ADDomain) DistinguishedName
+$ruta = (Get-ADDomain).DistinguishedName
+#Mostamos la variable $ruta
+echo $ruta
 #Unidades Organizativas para la creacion de empresa, usuario y maquinas
 $Usuarios = New-ADOrganizarionalUnit -Name usuarios -Path $ruta
 $Maquinas = New-ADOrganizarionalUnit -Name maquinas -Path $ruta
@@ -13,7 +15,7 @@ $Maquinas = New-ADOrganizarionalUnit -Name maquinas -Path $ruta
 #Los nombres pueden cambiar
 
 #Definir una variable para la contraseña de cada usuario
-$contraseña = "Usuario@1"
+$contrasena = "Usuario@1"
 
 $empresa = @('Planta0','Planta1','Planta2','Planta3')
 
@@ -26,7 +28,7 @@ for ($i=0;$i -le $empresa.Length -1;$i++){
     for($n=1;$n -le 10;$n++){
         $CrearUser = $empre=("{O:D2}" -f $n)
         #El usuario al ingresar debe cambiar la contraseña 
-        New-ADUser -Name $CrearUser -AccountPassword(ConvertTo-SecureString -AsPlainText $contraseña -Force) -Enabled $true -ChangePasswordAtLogon 1 -Path "OU=$empre,OU=Usuario.$ruta"
+        New-ADUser -Name $CrearUser -AccountPassword(ConvertTo-SecureString -AsPlainText $contrasena -Force) -Enabled $true -ChangePasswordAtLogon 1 -Path "OU=$empre,OU=Usuario.$ruta"
         Add-ADGroupMember -Identity $empre -Members $CrearUser
     }
 }
