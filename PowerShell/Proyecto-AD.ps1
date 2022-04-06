@@ -28,7 +28,7 @@ for ($i=0;$i -le $empresa.Length -1;$i++){
     New-ADGroup -GroupCategory Security -GroupScope Global -Name $empre -Path "OU=$empre,OU=Usuarios.$ruta"
 
     for($n=1;$n -le 10;$n++){
-        $CrearUser = $empre=("{O:D2}" -f $n)
+        $CrearUser = $empre+""+("{O:D2}" -f $n)
         #El usuario al ingresar debe cambiar la contraseña 
         New-ADUser -Name $CrearUser -AccountPassword(ConvertTo-SecureString -AsPlainText $contrasena -Force) -Enabled $true -ChangePasswordAtLogon 1 -Path "OU=$empre,OU=Usuarios.$ruta"
         Add-ADGroupMember -Identity $empre -Members $CrearUser
@@ -44,7 +44,7 @@ for($i=0;$i -le $Maquina.Length -1;$i++){
     $OUMaquinas = New-ADOrganizationalUnit -Name $NEW -Path "OU=Maquinas.Ruta"
 
     for(for($n=1;$n -le 10;$n++){
-        $CrearO = $NEW=("{O:D2}" -f $n)
+        $CrearO = $NEW+"-"+("{O:D2}" -f $n)
         New-ADComputer -Name $CrearO -Path "OU=$NEW,OU=maquinas.$ruta"
         
     }
