@@ -29,7 +29,7 @@ for($i=0;$i -le $grupos.Length -1 ;$i++){
      
         $crearUser =$grupo+"-"+("{0:D2}"-f$n)
         $contrasena = "Usuario@1"
-        New-ADUser -Name $crearUser -AccountPassword(ConvertTo-SecureString -AsPlainText $contrasena -Force) -Enabled $true -Path "OU=$grupo,OU=usuarios,$ruta"
+        New-ADUser -Name $crearUser -AccountPassword(ConvertTo-SecureString -AsPlainText $contrasena -Force) -Enabled $true -ChangePasswordAtLogon 1 -Path "OU=$grupo,OU=usuarios,$ruta"
         Add-ADGroupMember -Identity $grupo -Members $crearUser
         }
 
@@ -37,7 +37,7 @@ for($i=0;$i -le $grupos.Length -1 ;$i++){
 
 #Maquinas de cada usuario
 
-$OUmas = @('NAFT-Planta0','NAFT-Planta1','NAFT-Planta2')
+$OUmas = @('NAFT-Planta0','NAFT-Planta1','NAFT-Planta2','NAFT-Planta3')
 
 for($i=0;$i -le $OUmas.Length -1 ;$i++){
 
