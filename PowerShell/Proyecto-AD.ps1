@@ -1,7 +1,7 @@
 #####################################################################
 #######          Script Creado por Javier Jara Araya          #######
 #######    Utilizado para crear una organizacion de Empresa   #######
-#######                28/03/2022 - Actualidad                #######
+#######                28/03/2022 - 12/04/2022                #######
 #####################################################################
 
 $ruta = (Get-ADDomain).DistinguishedName
