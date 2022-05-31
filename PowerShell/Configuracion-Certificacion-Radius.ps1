@@ -1,14 +1,20 @@
-﻿##Visualizar 
+﻿##Visualizar si la caracteristica NPS esta habilitada
 Get-WindowsFeature -Name NPAS
 
-##
+##Instalar la caracteristica
 Install-WindowsFeature -Name NPAS
 
-##
+##Visualizar si esta hanilitada
 Get-WindowsFeature -Name NPAS
 
-##
+##Ver los comandos NPS
 Get-Command -Name *NPS*
+
+##Ver si tenemos un cliente radius 
+Get-NpsRadiusClient
+
+##Se crea uno teniendo el nombre y la ip
+New-NpsRadiusClient -Name 
 
 ##
 ## Export-NpsConfiguration - Exports NPS settings.
